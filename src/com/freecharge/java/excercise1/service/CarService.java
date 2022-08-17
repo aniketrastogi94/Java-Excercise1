@@ -88,14 +88,20 @@ public class CarService implements ICarService{
         List<CarModel> cars = carRepository.getCarsList();
         CarModel Car = null;
         boolean found=false;
-        for(CarModel car:cars){
-            if(car.getPrice()>=minPrice && car.getPrice()<=maxPrice){
-                found=true;
-                Car=car;
-            }
-        }
-        if(!found || minPrice<0.0 || maxPrice<0 || minPrice>maxPrice ){
-            throw new CarNotFoundException("Car not found");
+        // for(CarModel car:cars){
+        //     if(car.getPrice()>=minPrice && car.getPrice()<=maxPrice){
+        //         found=true;
+        //         Car=car;
+        //     }
+        // }
+        // if(!found || minPrice<0.0 || maxPrice<0 || minPrice>maxPrice ){
+        //     throw new CarNotFoundException("Car not found");
+        // }
+        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getPrice()>=minPrice && car.getPrice()<=maxPrice).findFirst();
+        if(findFirst.isEmpty()) {
+        	throw new CarNotFoundException("Car not found");
+        }else {
+        	Car = findFirst.get();
         }
         return Car;
     }
@@ -104,14 +110,20 @@ public class CarService implements ICarService{
         List<CarModel> cars = carRepository.getCarsList();
         CarModel Car = null;
         boolean found=false;
-        for(CarModel car:cars){
-            if(car.getRating()>=rating){
-                found=true;
-                Car=car;
-            }
-        }
-        if(!found || rating<0){
-            throw new CarNotFoundException("Car not found");
+        // for(CarModel car:cars){
+        //     if(car.getRating()>=rating){
+        //         found=true;
+        //         Car=car;
+        //     }
+        // }
+        // if(!found || rating<0){
+        //     throw new CarNotFoundException("Car not found");
+        // }
+        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getRating()>=rating).findFirst();
+        if(findFirst.isEmpty()) {
+        	throw new CarNotFoundException("Car not found");
+        }else {
+        	Car = findFirst.get();
         }
         return Car;
     }
