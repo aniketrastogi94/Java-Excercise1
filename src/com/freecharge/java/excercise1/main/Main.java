@@ -14,18 +14,14 @@ public class Main {
 			System.out.println("Car found with id 1: "+carService.getCarById(1));
 			
 			// searching with car name
-			try {
-				System.out.println( "Car found with name R1:"+carService.getCarByName("R1"));
-			} catch (Exception e) {
-				//e.printStackTrace();
-				System.out.println("Car not found with name R1");
-			}
-			//
+			System.out.println( "Car found with name R1:"+carService.getCarByName("R1"));
 			
 			//searching car with brand
-			//System.out.println(carService.getCarByBrand("AUDI"));
+			System.out.println("car found with brand :"+carService.getCarByBrand("AUDI"));
 			
-			
+			//searching with rating
+			byte rating=5;
+			System.out.println("Car found with rating 5: "+carService.getCarByRating(rating));
 			
 			//finding final price of a car using id and memberShip
 			System.out.println("final price of car: "+carService.getCarFinalPrice("Gold", 1));

@@ -53,7 +53,7 @@ public class CarService implements ICarService{
         // if(!found || brand==null || brand=="" ){
         //     throw new CarNotFoundException("Car not found");
         // }
-        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getBrand()==brand).findFirst();
+        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getBrand().equals(brand)).findFirst();
         if(findFirst.isEmpty()) {
         	throw new CarNotFoundException("Car not found");
         }else {
@@ -75,7 +75,7 @@ public class CarService implements ICarService{
         // if(!found || name==null || name=="" ){
         //     throw new CarNotFoundException("Car not found");
         // }
-        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getName()==name).findFirst();
+        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getName().equals(name)).findFirst();
         if(findFirst.isEmpty()) {
         	throw new CarNotFoundException("Car not found");
         }else {
