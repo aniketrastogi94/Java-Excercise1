@@ -15,4 +15,5 @@ public interface ICarService {
 	public CarModel getCarByPrice(double minPrice,double maxPrice) throws CarNotFoundException;
 	public CarModel getCarByRating(byte rating) throws CarNotFoundException;
 	public double getCarFinalPrice(String memberShip,int id);
+	public double maxCarPrice();
 }

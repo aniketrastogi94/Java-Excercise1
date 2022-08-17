@@ -1,6 +1,9 @@
 package com.freecharge.java.excercise1.service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
+
 import com.freecharge.java.excercise1.repository.*;
 import com.freecharge.java.excercise1.exception.*;
 import com.freecharge.java.excercise1.model.*;
@@ -18,15 +21,21 @@ public class CarService implements ICarService{
     public CarModel getCarById(int id) throws CarNotFoundException{
         List<CarModel> cars= carRepository.getCarsList();
         CarModel Car=null;
-        boolean found=false;
-        for(CarModel car:cars){
-            if(car.getId()==id){
-                found=true;
-                Car=car;
-            }
-        }
-        if(!found || id<0){
-            throw new CarNotFoundException("Car not found");
+//        boolean found=false;
+//        for(CarModel car:cars){
+//            if(car.getId()==id){
+//                found=true;
+//                Car=car;
+//            }
+//        }
+//        if(!found || id<0){
+//            throw new CarNotFoundException("Car not found");
+//        }
+        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getId()==id).findFirst();
+        if(findFirst.isEmpty()) {
+        	throw new CarNotFoundException("Car not found");
+        }else {
+        	Car = findFirst.get();
         }
         return Car;
     }
@@ -112,5 +121,12 @@ public class CarService implements ICarService{
             }
         }
         return ans;
+    }
+    @Override
+    public double maxCarPrice(){
+        List<CarModel> cars = carRepository.getCarsList();
+        OptionalDouble max = cars.stream().mapToDouble(CarModel::getPrice).max();
+        //System.out.println(max.getAsDouble());
+        return max.getAsDouble();
     }
 }

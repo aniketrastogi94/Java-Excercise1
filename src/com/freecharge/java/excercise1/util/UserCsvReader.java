@@ -17,7 +17,6 @@ public class UserCsvReader {
 			String userData = null;
 			while( (userData = br.readLine()) != null) {
 				String[] userDataSplit = userData.split(",");
-				System.out.println(userData);
 				UserModel user = new UserModel();
 				user.setId(Integer.parseInt(userDataSplit[0]))
 					.setEmail(userDataSplit[1])
@@ -30,14 +29,5 @@ public class UserCsvReader {
 			e.printStackTrace();
 		} 
 		return UserList;
-	}
-	
-	public static void main(String[] args) {
-		System.out.println("hello world");
-		UserCsvReader e= new UserCsvReader();
-		List<UserModel>Users = e.getUserListFromCsv();
-		for(UserModel user:Users) {
-			System.out.println(user.toString());
-		}
 	}
 }

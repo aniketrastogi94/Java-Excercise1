@@ -14,10 +14,10 @@ public class CarCsvReader {
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(car_csv_file_path)))){
 			br.readLine();
 			CarList = new ArrayList<>();
-			String empData = null;
-			while( (empData = br.readLine()) != null) {
-				String[] carDataSplit = empData.split(",");
-				System.out.println(empData);
+			String carData = null;
+			while( (carData = br.readLine()) != null) {
+				String[] carDataSplit = carData.split(",");
+				//System.out.println(carData);
 				CarModel car = new CarModel();
 				car.setId(Integer.parseInt(carDataSplit[0]))
 					.setName(carDataSplit[1])
@@ -31,14 +31,4 @@ public class CarCsvReader {
 		} 
 		return CarList;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println("hello world");
-		CarCsvReader e= new CarCsvReader();
-		List<CarModel>Cars = e.getCarListFromCsv();
-		for(CarModel car:Cars) {
-			System.out.println(car.getId());
-		}
-	}
-	
 }
