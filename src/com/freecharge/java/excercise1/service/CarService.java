@@ -44,14 +44,20 @@ public class CarService implements ICarService{
         List<CarModel> cars = carRepository.getCarsList();
         CarModel Car = null;
         boolean found=false;
-        for(CarModel car:cars){
-            if(car.getBrand()==brand){
-                found=true;
-                Car=car;
-            }
-        }
-        if(!found || brand==null || brand=="" ){
-            throw new CarNotFoundException("Car not found");
+        // for(CarModel car:cars){
+        //     if(car.getBrand()==brand){
+        //         found=true;
+        //         Car=car;
+        //     }
+        // }
+        // if(!found || brand==null || brand=="" ){
+        //     throw new CarNotFoundException("Car not found");
+        // }
+        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getBrand()==brand).findFirst();
+        if(findFirst.isEmpty()) {
+        	throw new CarNotFoundException("Car not found");
+        }else {
+        	Car = findFirst.get();
         }
         return Car;
     }
@@ -60,14 +66,20 @@ public class CarService implements ICarService{
         List<CarModel> cars = carRepository.getCarsList();
         CarModel Car = null;
         boolean found=false;
-        for(CarModel car:cars){
-            if(car.getName()==name){
-                found=true;
-                Car=car;
-            }
-        }
-        if(!found || name==null || name=="" ){
-            throw new CarNotFoundException("Car not found");
+        // for(CarModel car:cars){
+        //     if(car.getName()==name){
+        //         found=true;
+        //         Car=car;
+        //     }
+        // }
+        // if(!found || name==null || name=="" ){
+        //     throw new CarNotFoundException("Car not found");
+        // }
+        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getName()==name).findFirst();
+        if(findFirst.isEmpty()) {
+        	throw new CarNotFoundException("Car not found");
+        }else {
+        	Car = findFirst.get();
         }
         return Car;
     }
