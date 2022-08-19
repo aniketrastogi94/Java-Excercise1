@@ -5,7 +5,7 @@ import com.freecharge.java.excercise1.model.*;
 import com.freecharge.java.excercise1.util.*;
 
 public class CarRepository {
-	private List<CarModel> carList;
+	private List<Car> carList;
 	private CarCsvReader carCsvReader;
 	
 	public CarRepository() {
@@ -13,7 +13,7 @@ public class CarRepository {
 		this.carList=this.carCsvReader.getCarListFromCsv();
 	}
 	
-	public List<CarModel> getCarsList(){
+	public List<Car> getCarsList(){
 		return this.carList;
 	}
 }

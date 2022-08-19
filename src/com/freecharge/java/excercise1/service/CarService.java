@@ -14,15 +14,15 @@ public class CarService implements ICarService{
         carRepository=new CarRepository();
     }
     @Override
-    public List<CarModel> getAllCars(){
+    public List<Car> getAllCars(){
         return carRepository.getCarsList();
     }
     @Override
-    public CarModel getCarById(int id) throws CarNotFoundException{
-        List<CarModel> cars= carRepository.getCarsList();
-        CarModel Car=null;
+    public Car getCarById(int id) throws CarNotFoundException{
+        List<Car> cars= carRepository.getCarsList();
+        Car Car=null;
 //        boolean found=false;
-//        for(CarModel car:cars){
+//        for(Car car:cars){
 //            if(car.getId()==id){
 //                found=true;
 //                Car=car;
@@ -31,7 +31,7 @@ public class CarService implements ICarService{
 //        if(!found || id<0){
 //            throw new CarNotFoundException("Car not found");
 //        }
-        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getId()==id).findFirst();
+        Optional<Car> findFirst = cars.stream().filter((car)->car.getId()==id).findFirst();
         if(findFirst.isEmpty()) {
         	throw new CarNotFoundException("Car not found");
         }else {
@@ -40,11 +40,11 @@ public class CarService implements ICarService{
         return Car;
     }
     @Override
-    public CarModel getCarByBrand(String brand) throws CarNotFoundException{
-        List<CarModel> cars = carRepository.getCarsList();
-        CarModel Car = null;
+    public Car getCarByBrand(String brand) throws CarNotFoundException{
+        List<Car> cars = carRepository.getCarsList();
+        Car Car = null;
         boolean found=false;
-        // for(CarModel car:cars){
+        // for(Car car:cars){
         //     if(car.getBrand()==brand){
         //         found=true;
         //         Car=car;
@@ -53,7 +53,7 @@ public class CarService implements ICarService{
         // if(!found || brand==null || brand=="" ){
         //     throw new CarNotFoundException("Car not found");
         // }
-        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getBrand().equals(brand)).findFirst();
+        Optional<Car> findFirst = cars.stream().filter((car)->car.getBrand().equals(brand)).findFirst();
         if(findFirst.isEmpty()) {
         	throw new CarNotFoundException("Car not found");
         }else {
@@ -62,11 +62,11 @@ public class CarService implements ICarService{
         return Car;
     }
     @Override
-    public CarModel getCarByName(String name) throws CarNotFoundException{
-        List<CarModel> cars = carRepository.getCarsList();
-        CarModel Car = null;
+    public Car getCarByName(String name) throws CarNotFoundException{
+        List<Car> cars = carRepository.getCarsList();
+        Car Car = null;
         boolean found=false;
-        // for(CarModel car:cars){
+        // for(Car car:cars){
         //     if(car.getName()==name){
         //         found=true;
         //         Car=car;
@@ -75,7 +75,7 @@ public class CarService implements ICarService{
         // if(!found || name==null || name=="" ){
         //     throw new CarNotFoundException("Car not found");
         // }
-        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getName().equals(name)).findFirst();
+        Optional<Car> findFirst = cars.stream().filter((car)->car.getName().equals(name)).findFirst();
         if(findFirst.isEmpty()) {
         	throw new CarNotFoundException("Car not found");
         }else {
@@ -84,11 +84,11 @@ public class CarService implements ICarService{
         return Car;
     }
     @Override
-    public CarModel getCarByPrice(double minPrice,double maxPrice) throws CarNotFoundException{
-        List<CarModel> cars = carRepository.getCarsList();
-        CarModel Car = null;
+    public Car getCarByPrice(double minPrice,double maxPrice) throws CarNotFoundException{
+        List<Car> cars = carRepository.getCarsList();
+        Car Car = null;
         boolean found=false;
-        // for(CarModel car:cars){
+        // for(Car car:cars){
         //     if(car.getPrice()>=minPrice && car.getPrice()<=maxPrice){
         //         found=true;
         //         Car=car;
@@ -97,7 +97,7 @@ public class CarService implements ICarService{
         // if(!found || minPrice<0.0 || maxPrice<0 || minPrice>maxPrice ){
         //     throw new CarNotFoundException("Car not found");
         // }
-        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getPrice()>=minPrice && car.getPrice()<=maxPrice).findFirst();
+        Optional<Car> findFirst = cars.stream().filter((car)->car.getPrice()>=minPrice && car.getPrice()<=maxPrice).findFirst();
         if(findFirst.isEmpty()) {
         	throw new CarNotFoundException("Car not found");
         }else {
@@ -106,11 +106,11 @@ public class CarService implements ICarService{
         return Car;
     }
     @Override
-    public CarModel getCarByRating(byte rating) throws CarNotFoundException{
-        List<CarModel> cars = carRepository.getCarsList();
-        CarModel Car = null;
+    public Car getCarByRating(byte rating) throws CarNotFoundException{
+        List<Car> cars = carRepository.getCarsList();
+        Car Car = null;
         boolean found=false;
-        // for(CarModel car:cars){
+        // for(Car car:cars){
         //     if(car.getRating()>=rating){
         //         found=true;
         //         Car=car;
@@ -119,7 +119,7 @@ public class CarService implements ICarService{
         // if(!found || rating<0){
         //     throw new CarNotFoundException("Car not found");
         // }
-        Optional<CarModel> findFirst = cars.stream().filter((car)->car.getRating()>=rating).findFirst();
+        Optional<Car> findFirst = cars.stream().filter((car)->car.getRating()>=rating).findFirst();
         if(findFirst.isEmpty()) {
         	throw new CarNotFoundException("Car not found");
         }else {
@@ -129,9 +129,9 @@ public class CarService implements ICarService{
     }
     @Override
     public double getCarFinalPrice(String memberShip,int id){
-        List<CarModel> cars = carRepository.getCarsList();
+        List<Car> cars = carRepository.getCarsList();
         double ans=0.0;
-        for(CarModel car:cars){
+        for(Car car:cars){
             if(car.getId()==id){
                 if(memberShip=="Gold"){
                     ans = car.getPrice()*0.90;
@@ -148,8 +148,8 @@ public class CarService implements ICarService{
     }
     @Override
     public double maxCarPrice(){
-        List<CarModel> cars = carRepository.getCarsList();
-        OptionalDouble max = cars.stream().mapToDouble(CarModel::getPrice).max();
+        List<Car> cars = carRepository.getCarsList();
+        OptionalDouble max = cars.stream().mapToDouble(Car::getPrice).max();
         //System.out.println(max.getAsDouble());
         return max.getAsDouble();
     }

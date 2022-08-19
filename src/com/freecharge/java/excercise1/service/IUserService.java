@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.freecharge.java.excercise1.exception.UserAlreadyExistsException;
 import com.freecharge.java.excercise1.exception.UserNotFoundException;
-import com.freecharge.java.excercise1.model.UserModel;
+import com.freecharge.java.excercise1.model.User;
 
 public interface IUserService {
-	public List<UserModel> getAllUsers();
-	public UserModel getUserById(int id) throws UserNotFoundException;
-	public UserModel saveUser(UserModel user) throws UserAlreadyExistsException;
-	public UserModel updateuser(UserModel user) throws UserNotFoundException;
-	public boolean deleteUser(UserModel user) throws UserNotFoundException;
+	public List<User> getAllUsers();
+	public User getUserById(int id) throws UserNotFoundException;
+	public User saveUser(User user) throws UserAlreadyExistsException;
+	public User updateuser(User user) throws UserNotFoundException;
+	public boolean deleteUser(User user) throws UserNotFoundException;
 }

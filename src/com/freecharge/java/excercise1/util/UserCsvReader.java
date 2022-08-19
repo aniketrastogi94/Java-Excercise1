@@ -7,27 +7,27 @@ import java.util.List;
 import com.freecharge.java.excercise1.model.*;
 
 public class UserCsvReader {
-	private static final String user_csv_file_path = "C:\\Users\\aniket.rastogi\\eclipse-workspace\\System Design\\data\\user.csv";
-	public List<UserModel> getUserListFromCsv(){
-		List<UserModel> UserList = null;
+	private static final String USER_CSV_FILE_PATH  = "C:\\Users\\aniket.rastogi\\eclipse-workspace\\System Design\\data\\user.csv";
+	public List<User> getUserListFromCsv(){
+		List<User> userList = null;
 		
-		try (BufferedReader br = new BufferedReader(new FileReader(new File(user_csv_file_path)))){
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(USER_CSV_FILE_PATH)))){
 			br.readLine();
-			UserList = new ArrayList<>();
+			userList = new ArrayList<>();
 			String userData = null;
 			while( (userData = br.readLine()) != null) {
 				String[] userDataSplit = userData.split(",");
-				UserModel user = new UserModel();
+				User user = new User();
 				user.setId(Integer.parseInt(userDataSplit[0]))
 					.setEmail(userDataSplit[1])
 					.setName(userDataSplit[2])
 					.setContactNo(userDataSplit[3])
 					.setMemberShip(userDataSplit[4]);
-				UserList.add(user);
+				userList.add(user);
 			}
 		} catch(Exception e) {	
 			e.printStackTrace();
 		} 
-		return UserList;
+		return userList;
 	}
 }
